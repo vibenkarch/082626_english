@@ -58,29 +58,25 @@
     /* Compact, touch-friendly choice cards: reduces visual bulk without shrinking targets below 44px. */
     #game-choices-container { gap: 0.7rem; }
     #game-choices-container .choice-card { min-height: 4.9rem; }
-    /* Play selector: three compact tabs stay visible together, including on phones. */
-    .play-selector { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; }
-    .play-card { min-height: 10.5rem; padding: 1rem; }
-    .play-card .play-icon { width: 2.5rem; height: 2.5rem; margin-bottom: 0.6rem; }
-    .play-card .play-title { font-size: 1.2rem; line-height: 1.15; }
-    .play-card .play-genre { font-size: 0.68rem; line-height: 1.3; }
-    .play-card .play-summary { display: none; }
-    .play-card .play-cta { margin-top: 0.65rem; font-size: 0.7rem; }
+    /* Compact horizontal play tabs: fixed three-column layout, independent of Tailwind. */
+    #screen-home { gap: 1rem; padding: 1rem 0; }
+    #screen-home > * { margin-top: 0 !important; margin-bottom: 0 !important; }
+    .play-selector { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 0.5rem !important; }
+    .play-card { height: 7.25rem !important; min-height: 0 !important; padding: 0.65rem !important; }
+    .play-card > .absolute { display: none; }
+    .play-card .play-icon { width: 2rem; height: 2rem; margin-bottom: 0.35rem; font-size: 1rem; }
+    .play-card .play-title { font-size: clamp(0.92rem, 3.5vw, 1.18rem); line-height: 1.14; word-break: keep-all; }
+    .play-card .play-genre, .play-card .play-summary { display: none; }
+    .play-card .play-cta { position: absolute; right: 0.55rem; bottom: 0.45rem; margin: 0; font-size: 0.75rem; }
+    .play-card .play-cta span { display: none; }
+    .play-card .play-cta svg { margin-left: 0 !important; }
+    .home-credit { display: none; }
     @media (min-width: 768px) {
-      .play-selector { gap: 1rem; }
-      .play-card { min-height: 14.5rem; padding: 1.25rem; }
-      .play-card .play-icon { width: 3rem; height: 3rem; margin-bottom: 0.85rem; }
-      .play-card .play-title { font-size: 1.5rem; }
-      .play-card .play-genre { font-size: 0.72rem; }
-      .play-card .play-summary { display: block; font-size: 0.78rem; line-height: 1.5; margin-top: 0.65rem; }
-      .play-card .play-cta { margin-top: 0.9rem; font-size: 0.8rem; }
-    }
-    @media (max-width: 380px) {
-      .play-card { min-height: 9.6rem; padding: 0.7rem; }
-      .play-card .play-icon { width: 2.1rem; height: 2.1rem; margin-bottom: 0.4rem; }
-      .play-card .play-title { font-size: 1.03rem; }
-      .play-card .play-genre { font-size: 0.6rem; }
-      .play-card .play-cta { font-size: 0.62rem; }
+      #screen-home { gap: 1.25rem; }
+      .play-selector { gap: 0.8rem !important; }
+      .play-card { height: 8.25rem !important; padding: 0.85rem !important; }
+      .play-card .play-icon { width: 2.4rem; height: 2.4rem; margin-bottom: 0.45rem; }
+      .play-card .play-title { font-size: 1.2rem; }
     }
     .text-amber-400, .text-amber-500 { color: #9673c8 !important; }
     .text-purple-400 { color: #8d78c8 !important; }
@@ -89,6 +85,47 @@
     .bg-amber-500 { background-color: #dcccf5 !important; }
     .bg-gray-800.group-hover\:bg-amber-500:hover, .group:hover .group-hover\:bg-amber-500 { background-color: #d9c8f2 !important; }
     .hover\:bg-amber-400:hover { background-color: #d2bce9 !important; }
+    /* Classical theatre theme — parchment, burgundy velvet, and antique gold. */
+    :root { --ink: #30231f; --muted-ink: #6f5c4d; --wine: #6f2635; --deep-wine: #421820; --gold: #b88643; --paper: #fffaf0; --line: rgba(110, 66, 45, 0.22); }
+    body {
+      color: var(--ink);
+      background-color: #eee2cb;
+      background-image: radial-gradient(circle at 13% 8%, rgba(196, 149, 75, 0.20), transparent 25%), radial-gradient(circle at 88% 19%, rgba(111, 38, 53, 0.15), transparent 29%), repeating-linear-gradient(0deg, rgba(105, 75, 48, 0.025) 0, rgba(105, 75, 48, 0.025) 1px, transparent 1px, transparent 5px), linear-gradient(135deg, #f7f0df 0%, #eee1c8 48%, #f9f2e5 100%);
+    }
+    .glass-card {
+      background: rgba(255, 251, 241, 0.88);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--line);
+      box-shadow: 0 12px 28px rgba(65, 31, 22, 0.12), inset 0 1px rgba(255, 255, 255, 0.78);
+    }
+    .glass-card:hover { border-color: rgba(184, 134, 67, 0.72); box-shadow: 0 16px 34px rgba(76, 31, 27, 0.18), inset 0 1px rgba(255, 255, 255, 0.85); }
+    header, footer { background: rgba(62, 26, 30, 0.95) !important; border-color: rgba(212, 171, 96, 0.32) !important; }
+    header .text-amber-500 { color: #f0cb82 !important; text-shadow: 0 1px 0 rgba(0,0,0,0.25); }
+    footer .text-gray-500 { color: #e0c99e !important; }
+    .text-gray-100, .text-gray-200, .text-white { color: var(--ink) !important; }
+    .text-gray-300 { color: #57463d !important; }
+    .text-gray-400 { color: var(--muted-ink) !important; }
+    .text-gray-500 { color: #866f5c !important; }
+    .text-amber-400, .text-amber-500 { color: var(--gold) !important; }
+    .text-purple-400 { color: #703044 !important; }
+    .text-rose-400 { color: #a64758 !important; }
+    .text-emerald-400 { color: #466d5b !important; }
+    .bg-amber-500 { background-color: var(--gold) !important; }
+    .bg-gray-950\/40, .bg-gray-950\/20, .bg-gray-950\/60, .bg-gray-900\/60, .bg-gray-900\/40 { background-color: rgba(255, 250, 240, 0.86) !important; }
+    .bg-gray-800 { background-color: #eadcc7 !important; }
+    .border-gray-800, .border-gray-800\/80, .border-gray-700, .border-gray-700\/60 { border-color: var(--line) !important; }
+    .hover\:bg-gray-800:hover { background-color: #f0e1c8 !important; }
+    .hover\:bg-gray-900\/40:hover { background-color: #fffaf0 !important; }
+    #screen-home h1 { letter-spacing: -0.045em; text-shadow: 0 1px 0 #fffaf0; }
+    #screen-home h1 span { background-image: linear-gradient(100deg, #7a2838 10%, #b88643 50%, #6f2635 90%) !important; }
+    #screen-home .animate-pulse { animation: none; background: rgba(111, 38, 53, 0.08); border-color: rgba(111, 38, 53, 0.28); color: #6f2635 !important; }
+    .play-card { border-top: 3px solid rgba(184, 134, 67, 0.85); box-shadow: 0 8px 18px rgba(74, 35, 24, 0.11); }
+    .play-card:hover { transform: translateY(-3px); }
+    .play-card .play-icon { background: rgba(184, 134, 67, 0.10); border-color: rgba(184, 134, 67, 0.38); }
+    #game-progress { background: linear-gradient(90deg, #7a2838, #b88643) !important; }
+    #feedback-modal { background-color: rgba(48, 25, 23, 0.56) !important; }
+    #toast { background: #421820 !important; color: #fff5df !important; border: 1px solid rgba(212, 171, 96, 0.35); }
+    button:focus-visible, [onclick]:focus-visible { outline-color: rgba(184, 134, 67, 0.85); }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
     /* Custom animations */
     @keyframes float {
@@ -202,7 +239,7 @@
           </div>
         </div>
 
-        <div class="text-gray-500 text-xs mt-12 flex items-center justify-center space-x-2">
+        <div class="home-credit text-gray-500 text-xs flex items-center justify-center space-x-2">
           <span>Created for University Literature Appreciation</span>
           <span>•</span>
           <span>100% Client-Side Reactivity</span>
